@@ -1,0 +1,152 @@
+.unified-widget-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.unified-widget-container h1 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.integrations-section {
+  margin: 20px 0;
+}
+
+.integrations-container {
+  min-height: 400px;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  background-color: #f9f9f9;
+}
+
+/* Unified Embed Widget */
+.unified-embed-section {
+  margin: 30px 0;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.unified-embed-section h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #495057;
+  text-align: center;
+}
+
+.embed-container {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 10px;
+  border: 1px solid #dee2e6;
+}
+
+#unified_widget {
+  min-height: 400px;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  text-align: center;
+  background-color: #f9f9f9;
+}
+
+.loading-message {
+  color: #666;
+  font-size: 16px;
+  margin-top: 150px;
+}
+
+.widget-info {
+  background-color: #f0f8ff;
+  border: 1px solid #b0d4f1;
+  border-radius: 6px;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+.widget-info p {
+  margin: 5px 0;
+  color: #2c5aa0;
+  font-size: 14px;
+}
+
+/* Connection Controls */
+.connection-controls {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.connection-controls h3 {
+  margin-top: 0;
+  color: #495057;
+}
+
+.connection-status {
+  background-color: #e9ecef;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 15px 0;
+  font-family: monospace;
+  font-size: 14px;
+  min-height: 20px;
+}
+
+.connection-status.success {
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+}
+
+.connection-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.btn-info {
+  background-color: #17a2b8;
+  color: white;
+}
+
+.btn-info:hover {
+  background-color: #138496;
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.btn-warning:hover {
+  background-color: #e0a800;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}

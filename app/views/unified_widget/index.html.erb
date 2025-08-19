@@ -1,0 +1,65 @@
+<div class="unified-widget-container" 
+     data-controller="unified-widget"
+     data-unified-widget-workspace-id-value="<%= ENV['UNIFIED_WORKSPACE_ID'] || 'your_workspace_id_here' %>"
+     data-unified-widget-environment-value="<%= ENV['UNIFIED_ENVIRONMENT'] || 'Sandbox' %>">
+  <h1>Unified.to Integrations</h1>
+  
+  <!-- Official Unified.to HTML structure from documentation -->
+  <section class="integrations-section">
+    <div id="unified_widget" 
+         class="integrations-container">
+      
+      <div class="loading-message">
+        Loading Unified.to integrations...
+      </div>
+    </div>
+  </section>
+
+  <!-- Unified Embed Widget (Official Method) -->
+  <section class="unified-embed-section">
+    <h3>Connect Zendesk Integration</h3>
+    <div class="embed-container">
+      <!-- Try alternative embed URLs if the first one fails -->
+      <iframe
+        src="https://app.unified.to/embed?workspace_id=<%= ENV['UNIFIED_WORKSPACE_ID'] %>&api_key=<%= ENV['UNIFIED_API_KEY'] %>"
+        style="width: 100%; height: 600px; border: none; border-radius: 8px;"
+        title="Unified.to Zendesk Integration"
+        onerror="this.style.display='none'; document.getElementById('embed-fallback').style.display='block';"
+      ></iframe>
+      
+      <!-- Fallback message if iframe fails -->
+      <div id="embed-fallback" style="display: none; padding: 40px; text-align: center; background: #f8f9fa; border: 2px dashed #dee2e6; border-radius: 8px;">
+        <h4>Embed Widget Unavailable</h4>
+        <p>The Unified.to embed widget is currently unavailable.</p>
+        <p>Please use the JavaScript widget above or contact Unified.to support.</p>
+        <p><strong>Workspace ID:</strong> <%= ENV['UNIFIED_WORKSPACE_ID'] || 'Not configured' %></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Connection Status and Controls -->
+  <div class="connection-controls">
+    <h3>Connection Status</h3>
+    <div data-unified-widget-target="status" class="connection-status">
+      No active connection
+    </div>
+    
+    <div class="connection-actions">
+      <button data-action="click->unified-widget#getConnectionId" class="btn btn-info">
+        Get Connection ID
+      </button>
+      <button data-action="click->unified-widget#clearConnectionId" class="btn btn-warning">
+        Clear Connection
+      </button>
+      <button data-action="click->unified-widget#hasActiveConnection" class="btn btn-success">
+        Check Status
+      </button>
+    </div>
+  </div>
+  
+  <div class="widget-info">
+    <p>This widget will be loaded from Unified.to API</p>
+    <p>Workspace ID: <%= ENV['UNIFIED_WORKSPACE_ID'] || 'Not configured' %></p>
+    <p>Environment: <%= ENV['UNIFIED_ENVIRONMENT'] || 'Sandbox' %></p>
+  </div>
+</div>

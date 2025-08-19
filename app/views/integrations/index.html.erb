@@ -1,0 +1,182 @@
+<div class="integrations-page" 
+     data-controller="integrations"
+     data-workspace-id="<%= ENV['UNIFIED_WORKSPACE_ID'] %>"
+     data-api-key="<%= ENV['UNIFIED_API_KEY'] %>">
+  <div class="container">
+    <header class="page-header">
+      <h1>Zendesk Integration</h1>
+      <p>Connect your Zendesk account to Unified.to for seamless integration</p>
+    </header>
+
+    <!-- Unified.to Widget for Zendesk Integration -->
+    <section class="integration-widget-section">
+      <div class="widget-container">
+        <!-- Popup-based integration approach -->
+        <div class="integration-options">
+          <h3>Connect Your Zendesk Account</h3>
+          <p>Click the button below to open Unified.to in a new window for secure authentication.</p>
+          
+          <button id="open-unified-popup" class="btn btn-primary btn-large">
+            🔗 Connect to Unified.to
+          </button>
+          
+          <div class="alternative-options">
+            <p class="divider">or</p>
+            <a href="https://app.unified.to/connections?id=68a3859ee3ce4f6f8273b550&state=&type=zendesk" 
+               target="_blank" 
+               class="btn btn-secondary btn-large">
+              🔗 Direct Zendesk Connection
+            </a>
+            <p class="help-text">Opens in new tab if popup doesn't work</p>
+            
+            <div class="connection-actions">
+              <p class="action-title">Test Your Connection:</p>
+              <button id="test-connection" class="btn btn-success btn-large">
+                🧪 Test Zendesk API
+              </button>
+              <p class="help-text">Test if your connection is working</p>
+            </div>
+          </div>
+          
+          <div class="connection-status" data-integrations-target="status">
+            <p>No active connection</p>
+          </div>
+        </div>
+        
+        <!-- Hidden iframe for popup communication (optional) -->
+        <iframe
+          id="unified-iframe"
+          src="https://app.unified.to/embed?workspace_id=<%= ENV['UNIFIED_WORKSPACE_ID'] %>&api_key=<%= ENV['UNIFIED_API_KEY'] %>&popup=true"
+          style="display: none;"
+          title="Unified.to Integration"
+        ></iframe>
+      </div>
+    </section>
+
+    <!-- Integration Instructions -->
+    <section class="integration-instructions">
+      <h2>How to Connect Zendesk</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Click Zendesk</h3>
+            <p>Inside the widget above, click on the Zendesk option</p>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Log in to Zendesk</h3>
+            <p>Enter your Zendesk account credentials</p>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Get Connection ID</h3>
+            <p>After connecting, Unified will provide a connection ID</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Connection Status -->
+    <section class="connection-status-section">
+      <h2>Connection Status</h2>
+      <div class="status-display">
+        <p><strong>Workspace ID:</strong> <%= ENV['UNIFIED_WORKSPACE_ID'] || 'Not configured' %></p>
+        <p><strong>Environment:</strong> <%= ENV['UNIFIED_ENVIRONMENT'] || 'Production' %></p>
+        <p><strong>API Key:</strong> <%= ENV['UNIFIED_API_KEY'] ? 'Configured' : 'Not configured' %></p>
+      </div>
+      
+      <!-- Troubleshooting Section -->
+      <div class="troubleshooting-section">
+        <h3>🔧 Troubleshooting API Errors</h3>
+        <div class="troubleshooting-content">
+          <div class="error-type">
+            <h4>401 Unauthorized - "Invalid token"</h4>
+            <p>This means your connection exists but isn't fully authenticated with Zendesk.</p>
+            <ul>
+              <li>Go to <a href="https://app.unified.to/connections" target="_blank">Unified.to Connections</a></li>
+              <li>Click on your Zendesk connection row</li>
+              <li>Complete the authentication process</li>
+              <li>Wait for status to change to "Healthy"</li>
+            </ul>
+          </div>
+          
+          <div class="error-type">
+            <h4>404 Not Found</h4>
+            <p>This means the endpoint doesn't exist or your connection doesn't have access to this data type.</p>
+            <ul>
+              <li>Check if Zendesk provides this data type</li>
+              <li>Verify your connection permissions</li>
+              <li>Try different object types in the API Explorer</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Data Fetching and Display (following tutorial) -->
+    <section class="data-fetching-section">
+      <h2>Fetch Data from Unified.to API</h2>
+      
+      <!-- API Test Buttons -->
+      <div class="api-buttons">
+        <button id="fetch-employees" class="btn btn-primary btn-large">
+          👥 Fetch Employees
+        </button>
+        <button id="fetch-tickets" class="btn btn-primary btn-large">
+          🎫 Fetch Tickets
+        </button>
+        <button id="fetch-contacts" class="btn btn-primary btn-large">
+          👤 Fetch Contacts
+        </button>
+        <button id="fetch-candidates" class="btn btn-primary btn-large">
+          🧑‍💼 Fetch Candidates
+        </button>
+        
+        <!-- Debug button -->
+        <button id="debug-api" class="btn btn-warning btn-large">
+          🐛 Debug API Response
+        </button>
+        
+        <!-- Raw test button -->
+        <button id="raw-test" class="btn btn-info btn-large">
+          🔬 Raw API Test
+        </button>
+        
+        <!-- Test API Key button -->
+        <button id="test-api-key" class="btn btn-success btn-large">
+          🔑 Test API Key
+        </button>
+      </div>
+
+      <!-- Data Display -->
+      <div class="data-display">
+        <div id="employees-list" class="data-list" style="display: none;">
+          <h3>Employees:</h3>
+          <div class="list-content"></div>
+        </div>
+        
+        <div id="tickets-list" class="data-list" style="display: none;">
+          <h3>Tickets:</h3>
+          <div class="list-content"></div>
+        </div>
+        
+        <div id="contacts-list" class="data-list" style="display: none;">
+          <h3>Contacts:</h3>
+          <div class="list-content"></div>
+        </div>
+        
+        <div id="candidates-list" class="data-list" style="display: none;">
+          <h3>Candidates:</h3>
+          <div class="list-content"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
