@@ -7,19 +7,28 @@ class MultiPlatformService
     @api_key = ENV['UNIFIED_API_KEY']
   end
 
-  # Zendesk Integration (WhatsApp users)
+  # Zendesk Integration (Employee data - working endpoint)
   def get_zendesk_tickets(connection_id)
     response = HTTParty.get(
-      "#{BASE_URL}/ticketing/#{connection_id}/tickets",
+      "#{BASE_URL}/hris/#{connection_id}/employee",
       headers: {
         "Authorization" => "Bearer #{@api_key}"
+      },
+      query: {
+        fields: "id,created_at,updated_at,name,emails,telephones,image_url,timezone,employee_number,employment_status,language_locale,employee_roles"
       }
     )
     
     if response.success?
       response.parsed_response
     else
-      { error: "Zendesk API Error", status: response.code, message: response.message }
+      {
+        "statusCode" => response.code,
+        "error" => response.code == 401 ? "Unauthorized" : "Request Failed",
+        "message" => response.message || "HTTP #{response.code}",
+        "http_code" => response.code,
+        "raw_response" => response.body
+      }
     end
   end
 
@@ -50,7 +59,13 @@ class MultiPlatformService
     if response.success?
       response.parsed_response
     else
-      { error: "HubSpot API Error", status: response.code, message: response.message }
+      {
+        "statusCode" => response.code,
+        "error" => response.code == 401 ? "Unauthorized" : "Request Failed",
+        "message" => response.message || "HTTP #{response.code}",
+        "http_code" => response.code,
+        "raw_response" => response.body
+      }
     end
   end
 
@@ -68,7 +83,13 @@ class MultiPlatformService
     if response.success?
       response.parsed_response
     else
-      { error: "HubSpot HR API Error", status: response.code, message: response.message }
+      {
+        "statusCode" => response.code,
+        "error" => response.code == 401 ? "Unauthorized" : "Request Failed",
+        "message" => response.message || "HTTP #{response.code}",
+        "http_code" => response.code,
+        "raw_response" => response.body
+      }
     end
   end
 
@@ -83,7 +104,13 @@ class MultiPlatformService
     if response.success?
       response.parsed_response
     else
-      { error: "HubSpot API Error", status: response.code, message: response.message }
+      {
+        "statusCode" => response.code,
+        "error" => response.code == 401 ? "Unauthorized" : "Request Failed",
+        "message" => response.message || "HTTP #{response.code}",
+        "http_code" => response.code,
+        "raw_response" => response.body
+      }
     end
   end
 
@@ -99,7 +126,13 @@ class MultiPlatformService
     if response.success?
       response.parsed_response
     else
-      { error: "Firefish API Error", status: response.code, message: response.message }
+      {
+        "statusCode" => response.code,
+        "error" => response.code == 401 ? "Unauthorized" : "Request Failed",
+        "message" => response.message || "HTTP #{response.code}",
+        "http_code" => response.code,
+        "raw_response" => response.body
+      }
     end
   end
 
@@ -115,7 +148,13 @@ class MultiPlatformService
     if response.success?
       response.parsed_response
     else
-      { error: "WhatsApp API Error", status: response.code, message: response.message }
+      {
+        "statusCode" => response.code,
+        "error" => response.code == 401 ? "Unauthorized" : "Request Failed",
+        "message" => response.message || "HTTP #{response.code}",
+        "http_code" => response.code,
+        "raw_response" => response.body
+      }
     end
   end
 
@@ -131,7 +170,13 @@ class MultiPlatformService
     if response.success?
       response.parsed_response
     else
-      { error: "YouTube API Error", status: response.code, message: response.message }
+      {
+        "statusCode" => response.code,
+        "error" => response.code == 401 ? "Unauthorized" : "Request Failed",
+        "message" => response.message || "HTTP #{response.code}",
+        "http_code" => response.code,
+        "raw_response" => response.body
+      }
     end
   end
 
@@ -178,7 +223,13 @@ class MultiPlatformService
     if response.success?
       response.parsed_response
     else
-      { error: "YouTube Users API Error", status: response.code, message: response.message }
+      {
+        "statusCode" => response.code,
+        "error" => response.code == 401 ? "Unauthorized" : "Request Failed",
+        "message" => response.message || "HTTP #{response.code}",
+        "http_code" => response.code,
+        "raw_response" => response.body
+      }
     end
   end
 
@@ -209,7 +260,13 @@ class MultiPlatformService
     if response.success?
       response.parsed_response
     else
-      { error: "#{hr_system} API Error", status: response.code, message: response.message }
+      {
+        "statusCode" => response.code,
+        "error" => response.code == 401 ? "Unauthorized" : "Request Failed",
+        "message" => response.message || "HTTP #{response.code}",
+        "http_code" => response.code,
+        "raw_response" => response.body
+      }
     end
   end
 
@@ -219,11 +276,12 @@ class MultiPlatformService
     return { error: "No Zendesk connection ID" } unless connection_id
     
     response = HTTParty.get(
-      "#{BASE_URL}/ticketing/#{connection_id}/customers",
+      "#{BASE_URL}/hris/#{connection_id}/employee",
       headers: {
         "Authorization" => "Bearer #{@api_key}"
       },
       query: {
+        fields: "id,created_at,updated_at,name,emails,telephones,image_url,timezone,employee_number,employment_status,language_locale,employee_roles",
         email: user_email
       }
     )
@@ -231,7 +289,13 @@ class MultiPlatformService
     if response.success?
       response.parsed_response
     else
-      { error: "Zendesk API Error", status: response.code, message: response.message }
+      {
+        "statusCode" => response.code,
+        "error" => response.code == 401 ? "Unauthorized" : "Request Failed",
+        "message" => response.message || "HTTP #{response.code}",
+        "http_code" => response.code,
+        "raw_response" => response.body
+      }
     end
   end
 

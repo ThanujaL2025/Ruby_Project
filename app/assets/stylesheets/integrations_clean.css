@@ -88,28 +88,6 @@
   font-size: 1.1rem;
 }
 
-.btn-secondary {
-  background: #6c757d;
-  color: white;
-}
-
-.btn-secondary:hover {
-  background: #5a6268;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(108, 117, 125, 0.4);
-}
-
-.btn-success {
-  background: #27ae60;
-  color: white;
-}
-
-.btn-success:hover {
-  background: #229954;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(39, 174, 96, 0.4);
-}
-
 .connection-status {
   margin-top: 20px;
   padding: 15px;
@@ -352,42 +330,85 @@
   font-weight: 500;
 }
 
-
-
-/* Alternative Options Styling */
-.alternative-options {
-  margin-top: 30px;
-  padding-top: 30px;
-  border-top: 2px solid #e9ecef;
-}
-
-.divider {
-  color: #6c757d;
-  font-size: 1rem;
-  margin: 20px 0;
-  font-weight: 600;
-}
-
-.help-text {
-  color: #6c757d;
-  font-size: 0.9rem;
-  margin: 10px 0;
-  font-style: italic;
-}
-
-.connection-actions {
-  margin-top: 20px;
-  padding: 20px;
+/* Debug Section Styling */
+.debug-section {
   background: #f8f9fa;
+  border: 2px solid #ffc107;
   border-radius: 8px;
-  border: 1px solid #dee2e6;
+  padding: 20px;
+  margin: 20px 0;
 }
 
-.action-title {
-  color: #495057;
-  font-weight: 600;
+.debug-section h3 {
+  color: #856404;
   margin-bottom: 15px;
-  font-size: 1.1rem;
+}
+
+.debug-content {
+  background: white;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  padding: 15px;
+}
+
+.debug-content pre {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  padding: 10px;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.debug-content h4 {
+  color: #495057;
+  margin: 15px 0 10px 0;
+  font-size: 1rem;
+}
+
+.debug-content p {
+  margin: 10px 0;
+  color: #495057;
+}
+
+/* Raw Section Styling */
+.raw-section {
+  background: #e3f2fd;
+  border: 2px solid #2196f3;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.raw-section h3 {
+  color: #1565c0;
+  margin-bottom: 15px;
+}
+
+.raw-content {
+  background: white;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  padding: 15px;
+}
+
+.raw-content h4 {
+  color: #1976d2;
+  margin: 15px 0 10px 0;
+  font-size: 1rem;
+}
+
+.raw-content pre {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  padding: 10px;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 /* Responsive adjustments */

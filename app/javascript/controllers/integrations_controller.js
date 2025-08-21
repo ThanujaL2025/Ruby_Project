@@ -91,7 +91,19 @@ export default class extends Controller {
 
   // Test the Zendesk connection
   testZendeskConnection() {
-    const connectionId = '68a3859ee3ce4f6f8273b550' // Use the ID from your connection
+    // Read from data attribute instead of hardcoding
+    // Note: data-integrations-connection-id becomes integrationsConnectionId in Stimulus
+    const connectionId = this.element.dataset.integrationsConnectionId || this.element.dataset.connectionId
+    
+    // Debug: Log what we're reading
+    console.log('🔍 Element dataset:', this.element.dataset)
+    console.log('🔍 Connection ID from dataset:', connectionId)
+    console.log('🔍 Element:', this.element)
+    
+    if (!connectionId) {
+      this.updateConnectionStatus('❌ No connection ID found. Please check environment variables.', 'error')
+      return
+    }
     
     this.updateConnectionStatus('Testing connection...', 'neutral')
     
@@ -119,7 +131,8 @@ export default class extends Controller {
 
   // Step 7: Fetch and display data (following tutorial pattern)
   setupDataFetching() {
-    const connectionId = '68a3859ee3ce4f6f8273b550'
+    // Note: data-integrations-connection-id becomes integrationsConnectionId in Stimulus
+    const connectionId = this.element.dataset.integrationsConnectionId || this.element.dataset.connectionId || '68a3859ee3ce4f6f8273b550'
     
     // Fetch Employees
     const fetchEmployeesBtn = document.getElementById('fetch-employees')

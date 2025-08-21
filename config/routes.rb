@@ -34,10 +34,10 @@ Rails.application.routes.draw do
   get 'platform_data', to: 'multi_platform#platform_data'
   post 'create_cross_platform_ticket', to: 'multi_platform#create_cross_platform_ticket'
   get 'platform_status', to: 'multi_platform#platform_status'
-  
-  # YouTube user information routes
-  get 'all_youtube_users_info', to: 'multi_platform#all_youtube_users_info'
+  get 'youtube_users', to: 'multi_platform#all_youtube_users_info'
   get 'youtube_user_profile', to: 'multi_platform#youtube_user_profile'
+  
+
   
   root "unified_widget#index"
 end

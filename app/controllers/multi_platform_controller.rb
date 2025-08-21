@@ -118,31 +118,31 @@ class MultiPlatformController < ApplicationController
         name: "Zendesk",
         description: "Customer support for some YouTube users",
         connection_id: ENV['ZENDESK_CONNECTION_ID'],
-        status: "Connected"
+        status: ENV['ZENDESK_CONNECTION_ID'] ? "Connected" : "Not Connected"
       },
       hr1: {
         name: "HR1",
         description: "HR system for some YouTube users",
         connection_id: ENV['HR1_CONNECTION_ID'],
-        status: "Connected"
+        status: ENV['HR1_CONNECTION_ID'] ? "Connected" : "Not Connected"
       },
       hr2: {
         name: "HR2", 
         description: "HR system for other YouTube users",
         connection_id: ENV['HR2_CONNECTION_ID'],
-        status: "Connected"
+        status: ENV['HR2_CONNECTION_ID'] ? "Connected" : "Not Connected"
       },
       hr3: {
         name: "HR3",
         description: "HR system for other YouTube users", 
         connection_id: ENV['HR3_CONNECTION_ID'],
-        status: "Connected"
+        status: ENV['HR3_CONNECTION_ID'] ? "Connected" : "Not Connected"
       },
       youtube: {
         name: "YouTube",
         description: "Content platform for all users",
         connection_id: ENV['YOUTUBE_CONNECTION_ID'],
-        status: "Connected"
+        status: ENV['YOUTUBE_CONNECTION_ID'] ? "Connected" : "Not Connected"
       }
     }
     
@@ -160,7 +160,7 @@ class MultiPlatformController < ApplicationController
       
       render json: {
         success: true,
-        total_users: all_users.count,
+        total_users: all_users.keys.count,
         users: all_users
       }
     rescue => e
